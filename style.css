@@ -362,3 +362,11 @@
     border-radius: 5px;
     float: center;
 }
+.signup{
+    color: rgb(16, 53, 239);
+    text-decoration: none;
+    font-weight: 500;
+}
+.signup:hover{
+    text-decoration: underline;
+}
