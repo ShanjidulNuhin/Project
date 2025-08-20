@@ -72,6 +72,16 @@
     flex-direction: column;
     background: transparent
 }
+/* @keyframes clickSlide {
+  0%   { transform: translate(-50%, -50%) translateX(0); }
+  50%  { transform: translate(-50%, -50%) translateX(30px); } 
+  100% { transform: translate(-50%, -50%) translateX(0); }    
+} */
+
+.container.animate {
+  animation: clickSlide 0.5s ease;
+}
+
 .container .form{
     position: absolute;
     top: 0;
@@ -153,7 +163,7 @@
     font-size: 16px;
     border: 3.5px solid thistle;
     box-shadow: 2px 2px 5px thistle;
-    width: 108%;
+    width: 102%;
     height: 47px;
     transition: 0.5s;
     cursor: pointer;
@@ -183,8 +193,8 @@
     background-color: rgb(197, 197, 202);
     font-size: 16px;
     border: 3.5px solid black;
-    box-shadow: 2px 2px 5px rgb(68, 67, 68);
-    width: 108%;
+    box-shadow: 2px 2px 5px thistle;
+    width: 102%;
     height: 47px;
     transition: 0.5s;
     cursor: pointer;
@@ -225,7 +235,7 @@
     font-size: 16px;
     border: 3.5px solid black;
     box-shadow: 2px 2px 5px thistle;
-    width: 108%;
+    width: 102%;
     height: 47px;
     transition: 0.5s;
     cursor: pointer;
@@ -263,7 +273,7 @@
     font-size: 16px;
     border: 3.5px solid thistle;
     box-shadow: 2px 2px 5px thistle;
-    width: 108%;
+    width: 102%;
     height: 47px;
     transition: 0.5s;
     cursor: pointer;
@@ -281,14 +291,74 @@
     text-decoration: none;
     font-weight: 500;
 }
-#password{
+
+.uName, .pass {
+    position: relative;
     width: 100%;
-    height: 35px;
-    border-radius: 2px;
-    display:block;
-    background-color: transparent;
-    border-bottom: 2px solid thistle;
-    margin: 30px 0;
+    height: 45px;
+    margin: 25px 0;
+}
+
+.uName input,
+.pass input {
+    width: 100%;
+    height: 100%;
     border: none;
+    outline: none;
+    background: transparent;
+    border-bottom: 2px solid thistle;
+    font-size: 16px;
+    color: white;
+    padding: 0 12px;
+}
+.uName label,
+.pass label {
+    position: absolute;
     top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: white;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+.uName input:focus + label,
+.uName input:valid + label,
+.pass input:focus + label,
+.pass input:valid + label {
+    top: 8px;
+    font-size: 12px;
+    color: thistle;
+    background: transparent;
+    padding: 0 4px;
+}
+
+.uName,.pass{
+    margin: 5px 0;
+}
+/* .pass,.forgot{
+    margin: 5px 0;
+} */
+ /* @keyframes clickEffect {
+  0%   { transform: scale(1); box-shadow: 0 0 0px rgba(0,0,0,0); }
+  50%  { transform: scale(1.1); box-shadow: 0 0 20px rgba(66,133,244,0.6); }
+  100% { transform: scale(1); box-shadow: 0 0 0px rgba(0,0,0,0); }
+}
+
+#gbtn.animate {
+  animation: clickEffect 0.5s ease;
+} */
+#email_form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color:  rgb(232, 232, 238);
+    color: black;
+    width: 100%;
+    height: 45px;
+    border:2px solid black;
+    border-radius: 5px;
+    float: center;
 }
