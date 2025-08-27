@@ -1,45 +1,49 @@
-// const container = document.querySelector('.container');
+function validationCheck(){
+    let name = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
 
-// container.addEventListener('click', () => {
-//   container.classList.add('animate');
+    let eName = document.getElementById("eName");
+    let ePass = document.getElementById("ePass");
 
-//   // Remove class after animation ends so it can trigger again on next click
-//   container.addEventListener('animationend', () => {
-//     container.classList.remove('animate');
-//   }, { once: true });
-// });
-// document.getElementById("gbtn").addEventListener("click", function (e) {
-//     e.preventDefault(); // stop instant redirect
+    eName.innerHTML=""
+    ePass.innerHTML=""
 
-//     let button = this;
-//     button.classList.add("animate");
+    if(name=="" ){
+        eName.innerHTML="Please enter Your Username first"
+        return false;
 
-//     // wait for animation to finish, then redirect
-//     setTimeout(() => {
-//         button.classList.remove("animate");
-//         window.location.href = "login_with_google.html";
-//     }, 500); // match animation duration
-// });
-function validationForm(){
-    let isValid = true;
+    }else if(pass == ""){
+         ePass.innerHTML="Please enter Your Password first"
+         return false;
+    }else if(name.length >5||name.length <3){
+        ePass.innerHTML=""
+        eName.innerHTML="Username must be between 3-5 charecters"
+        return false;
+
+    }else if(pass.length <6){
+        eName.innerHTML=""
+        ePass.innerHTML="Password must be at least 6 charecters long"
+        return false;   
+
+    }else{
+        // AJAX request to PHP
+        fetch("login.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `username=${encodeURIComponent(name)}&password=${encodeURIComponent(pass)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Login successfully");
+                window.location.href = "inventory.html";
+            } else {
+                ePass.innerHTML = data.message || "Login failed";
+            }
+        })
+        .catch(() => {
+            ePass.innerHTML = "Server error";
+        });
+        return false;
+    }
 }
-let nameInput = document.getElementById("username");
-let passwordInput = document.getElementById("password");
-
-let errorUname = document.getElementById("error-username");
-let errorPass = document.getElementById("error-password");
-
-errorUname.innerText = "";
-errorPass.innerText = "";
-
-if (nameInput.value.trim() === "") {
-    errorUname.innerText = "Username is required";
-    isValid = false;
-}
-
-if (passwordInput.value.trim() === "") {
-    errorPass.innerText = "Password is required";
-    isValid = false;
-}
-
-return isValid;
